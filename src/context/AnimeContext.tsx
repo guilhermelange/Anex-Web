@@ -1,0 +1,71 @@
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { api } from '@/services/api'
+import CollectionDTO from "@/interfaces/CollectionDTO";
+import AnimeDTO, { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
+
+interface AnimeProviderProps {
+    children: ReactNode;
+}
+
+interface AnimeContextType {
+    loadAll: () => Promise<void>;
+    loadAnime: (animeId: string) => Promise<void>;
+    handleSetFavorite: () => void;
+    handleEvaluation: (value: boolean) => void;
+    anime: AnimeDTO | null;
+    collections: CollectionDTO[];
+    trendings: AnimeCollectionDTO[];
+}
+
+export const AnimeContext = createContext({} as AnimeContextType)
+
+export function AnimeProvider({ children }: AnimeProviderProps) {
+    const [collections, setCollections] = useState([]);
+    const [trendings, setTrendings] = useState([]);
+    const [anime, setAnime] = useState({} as AnimeDTO);
+
+    async function loadAll() {
+        const responsedata = await api.get('collection');
+        const collections = responsedata.data;
+        const trendingCollection = collections.shift()
+        const trendings = trendingCollection.animes
+
+        console.log('Entrou load all')
+        trendings[0].progress = 1
+        setCollections(collections);
+        setTrendings(trendings);
+    }
+
+    async function loadAnime(animeId: string) {
+        const responsedata = await api.get(`animes/${animeId}`);
+        const Anime: AnimeDTO = responsedata.data;
+        setAnime(Anime);
+    }
+
+    async function handleSetFavorite() {
+        const favoriteBoolean = !anime.favorite
+        const body = { favorite: favoriteBoolean }
+        const responsedata = await api.put(`animes/${anime?.id}`, body);
+        if (responsedata.status === 200) {
+            const newAnime = { ...anime }
+            newAnime.favorite = favoriteBoolean
+            setAnime(newAnime)
+        }
+    }
+
+    async function handleEvaluation(value: boolean) {
+        const body = { evaluation: value }
+        const responsedata = await api.put(`animes/${anime?.id}`, body);
+        if (responsedata.status === 200) {
+            const newAnime = { ...anime }
+            newAnime.evaluation = value
+            setAnime(newAnime)
+        }
+    }
+
+    return (
+        <AnimeContext.Provider value={{ loadAll, collections, trendings, loadAnime, anime, handleSetFavorite, handleEvaluation}}>
+            {children}
+        </AnimeContext.Provider>
+    )
+}
