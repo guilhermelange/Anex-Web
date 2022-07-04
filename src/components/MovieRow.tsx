@@ -10,7 +10,7 @@ type MovieRowProps = {
 }
 const MovieRow = (props: MovieRowProps) => {
   const [scrollX, setscrollX] = useState(0);
-  const windowRow = useRef<HTMLDivElement>(document.createElement("div"));
+  const windowRow = useRef<HTMLDivElement>(null);
 
   const handleLeftArrow = () => {
     let x = scrollX + Math.round(window.innerWidth / 2);
@@ -24,7 +24,10 @@ const MovieRow = (props: MovieRowProps) => {
     let x = scrollX - Math.round(window.innerWidth / 2);
     let listW = props.items.animes.length * 165;
 
-    const computedWidth = windowRow.current.offsetWidth;
+    let computedWidth = 0;
+    if (windowRow.current != null)
+      computedWidth = windowRow.current.offsetWidth
+    
     
     if ((computedWidth - listW) > x) {
       x = (computedWidth - listW);
