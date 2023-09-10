@@ -23,7 +23,7 @@ export function NavLeft() {
                 backgroundColor={stackColor}
             >
                 <IconButton
-                    onClick={colorMode == 'dark' ? toggleColorMode : () => { }}
+                    onClick={toggleColorMode}
                     size='md'
                     isRound
                     colorScheme={colorMode == 'dark' ? 'gray' : primary}
@@ -31,7 +31,7 @@ export function NavLeft() {
                     aria-label="adventure"
                     icon={<SunIcon />} />
                 <IconButton
-                    onClick={colorMode == 'light' ? toggleColorMode : () => { }}
+                    onClick={toggleColorMode}
                     size='md'
                     isRound
                     colorScheme={colorMode == 'light' ? 'gray' : primary}

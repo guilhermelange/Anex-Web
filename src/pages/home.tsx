@@ -21,6 +21,7 @@ interface HomeProps {
 }
 
 export default function Homepage({ collections, trendings }: HomeProps) {  
+  
   return (
     <>
       <SEO title="Início" />
