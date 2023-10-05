@@ -8,6 +8,7 @@ import { api } from "@/services/api";
 import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
 import CollectionDTO from "@/interfaces/CollectionDTO";
 import AnimeImage from "@/components/AnimeImage";
+import { apiResources } from "@/services/api.contants";
 
 export default function Favorites() {
     const router = useRouter();
@@ -43,7 +44,7 @@ export default function Favorites() {
 
     async function sendRequestTop(filter: string) {
         let newFiltered : AnimeCollectionDTO[] = [];
-        const response = await api.get(`collection/${filter}`)
+        const response = await api.get(`${apiResources.COLLECTION}/${filter}`)
         const collections: CollectionDTO[] = response.data;
         if (collections) {
             for (const collection of collections) {

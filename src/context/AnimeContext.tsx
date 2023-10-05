@@ -2,6 +2,7 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "re
 import { api } from '@/services/api'
 import CollectionDTO from "@/interfaces/CollectionDTO";
 import AnimeDTO, { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
+import { apiResources } from "@/services/api.contants";
 
 interface AnimeProviderProps {
     children: ReactNode;
@@ -25,19 +26,18 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
     const [anime, setAnime] = useState({} as AnimeDTO);
 
     async function loadAll() {
-        const responsedata = await api.get('collection');
+        const responsedata = await api.get(apiResources.COLLECTION);
         const collections = responsedata.data;
         const trendingCollection = collections.shift()
         const trendings = trendingCollection.animes
 
-        console.log('Entrou load all')
         trendings[0].progress = 1
         setCollections(collections);
         setTrendings(trendings);
     }
 
     async function loadAnime(animeId: string) {
-        const responsedata = await api.get(`animes/${animeId}`);
+        const responsedata = await api.get(`${apiResources.ANIMES}/${animeId}`);
         const Anime: AnimeDTO = responsedata.data;
         setAnime(Anime);
     }
@@ -45,7 +45,7 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
     async function handleSetFavorite() {
         const favoriteBoolean = !anime.favorite
         const body = { favorite: favoriteBoolean }
-        const responsedata = await api.put(`animes/${anime?.id}`, body);
+        const responsedata = await api.put(`${apiResources.ANIMES}/${anime?.id}`, body);
         if (responsedata.status === 200) {
             const newAnime = { ...anime }
             newAnime.favorite = favoriteBoolean
@@ -55,7 +55,7 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
 
     async function handleEvaluation(value: boolean) {
         const body = { evaluation: value }
-        const responsedata = await api.put(`animes/${anime?.id}`, body);
+        const responsedata = await api.put(`${apiResources.ANIMES}/${anime?.id}`, body);
         if (responsedata.status === 200) {
             const newAnime = { ...anime }
             newAnime.evaluation = value

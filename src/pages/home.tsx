@@ -14,6 +14,7 @@ import { parseCookies } from "nookies";
 import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
 import Trending from "@/components/Trending";
 import MovieRow from "@/components/MovieRow";
+import { apiResources } from "@/services/api.contants";
 
 interface HomeProps {
   collections: CollectionDTO[];
@@ -52,7 +53,7 @@ export async function getServerSideProps<HomeProps>(context: any) {
   const { 'nextauth.token': token } = parseCookies(context);
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-  const responsedata = await api.get('collection');
+  const responsedata = await api.get(apiResources.COLLECTION);
   const collections = responsedata.data;
   const trendingCollection = collections.shift()
   const trendings = trendingCollection.animes

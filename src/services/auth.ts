@@ -1,5 +1,6 @@
 // import { parseCookies } from 'nookies'
 import { api } from '@/services/api'
+import { apiResources } from './api.contants';
 
 export const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
@@ -29,12 +30,12 @@ export async function signInRequest(data: SignInRequestData) {
       try {
           if (google) {
             try {
-              await api.post("/users", { name, email, password, avatar });
+              await api.post(apiResources.SIGNIN, { name, email, password, avatar });
             } catch(error) {
             }
           }
 
-          const response = await api.post("/sessions", { email, password, google});
+          const response = await api.post(apiResources.SIGNIN, { email, password, google});
           const {token, user} = response.data;
           return {token, user};
       } catch (err) {

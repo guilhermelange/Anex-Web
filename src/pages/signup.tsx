@@ -24,6 +24,7 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Dialog, { DialogRequestDTO } from '@/components/Dialog';
 import { useColorModeValue } from '@chakra-ui/react';
+import { apiResources } from '@/services/api.contants';
 
 const SignUp: NextPage = () => {
     const [show, setShow] = useState(false);
@@ -44,7 +45,7 @@ const SignUp: NextPage = () => {
     const onSubmit = async (data: any) => {
         const { name, email, password } = data;
         try {
-            const response = await api.post("/users", { name, email, password });
+            const response = await api.post(apiResources.SIGNUP, { name, email, password });
             toast({
                 title: 'Conta criada',
                 description: 'Logue com sua nova conta',
