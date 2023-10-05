@@ -1,6 +1,6 @@
 import { useColorModeValue } from "@chakra-ui/react";
 import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, useDisclosure } from "@chakra-ui/react";
-import React from "react";
+import React, { useRef } from "react";
 
 export interface DialogRequestDTO {
     title: string;
@@ -13,14 +13,15 @@ export interface DialogRequestDTO {
 
 
 export default function Dialog({ title, message, button, isOpen, onOpen, onClose }: DialogRequestDTO) {
-
+    const cancelRef = useRef() as React.MutableRefObject<HTMLInputElement>;
     const primary = useColorModeValue("purple", "orange")
     const text = useColorModeValue("black", "white")
 
     return (
         <AlertDialog
             // motionPreset='slideInBottom'
-            leastDestructiveRef={undefined}
+            // leastDestructiveRef={undefined}
+            leastDestructiveRef={cancelRef}
             onClose={onClose}
             isOpen={isOpen}
             isCentered
