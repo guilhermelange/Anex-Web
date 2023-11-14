@@ -11,11 +11,12 @@ interface AnimeProviderProps {
 interface AnimeContextType {
     loadAll: () => Promise<void>;
     loadAnime: (animeId: string) => Promise<void>;
-    handleSetFavorite: () => void;
-    handleEvaluation: (value: boolean) => void;
+    handleSetFavorite: () => Promise<void>;
+    handleEvaluation: (value: boolean) => Promise<void>;
     anime: AnimeDTO | null;
     collections: CollectionDTO[];
     trendings: AnimeCollectionDTO[];
+    loadingAnime: boolean;
 }
 
 export const AnimeContext = createContext({} as AnimeContextType)
@@ -24,6 +25,8 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
     const [collections, setCollections] = useState([]);
     const [trendings, setTrendings] = useState([]);
     const [anime, setAnime] = useState({} as AnimeDTO);
+    const [loadingAnime, setLoadingAnime] = useState(false);
+    const [currentAnime, setCurrentAnime] = useState('');
 
     async function loadAll() {
         const responsedata = await api.get(apiResources.COLLECTION);
@@ -37,9 +40,11 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
     }
 
     async function loadAnime(animeId: string) {
+        setLoadingAnime(true);
         const responsedata = await api.get(`${apiResources.ANIMES}/${animeId}`);
         const Anime: AnimeDTO = responsedata.data;
         setAnime(Anime);
+        setLoadingAnime(false);
     }
 
     async function handleSetFavorite() {
@@ -64,7 +69,7 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
     }
 
     return (
-        <AnimeContext.Provider value={{ loadAll, collections, trendings, loadAnime, anime, handleSetFavorite, handleEvaluation}}>
+        <AnimeContext.Provider value={{ loadingAnime, loadAll, collections, trendings, loadAnime, anime, handleSetFavorite, handleEvaluation}}>
             {children}
         </AnimeContext.Provider>
     )

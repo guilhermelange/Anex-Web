@@ -141,7 +141,7 @@ const SignUp: NextPage = () => {
                                             {errors.password && String(errors.password.message)}
                                         </FormErrorMessage>
                                     </FormControl>
-                                    <Button colorScheme={primary} isLoading={isSubmitting} type='submit'>
+                                    <Button color={'white'} colorScheme={primary} isLoading={isSubmitting} type='submit'>
                                         Cadastrar
                                     </Button>
                                 </SimpleGrid>

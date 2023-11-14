@@ -10,7 +10,7 @@ import { MdArrowBack } from "react-icons/md";
 export default function Watch() {
     const { loadAnime, anime } = useContext(AnimeContext);
     const { query: { anime: animeId,  season: seasonNumber, episode: episodeNumber } } = useRouter();
-    const [ season, setSeason ] = useState({} as SeasonDTO);
+    // const [ season, setSeason ] = useState({} as SeasonDTO);
     const [ episode, setEpisode ] = useState({} as EpisodeDTO);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function Watch() {
             const intEpisode = +String(episodeNumber);
             const filteredSeason = anime?.season?.find(item => (item.number == intSeason)) || {} as SeasonDTO;
             const filteredEpisode = filteredSeason?.episode?.find(item => (+item.number == intEpisode)) || {} as EpisodeDTO;
-            setSeason(filteredSeason);
+            // setSeason(filteredSeason);
             setEpisode(filteredEpisode);
         }
     }, [anime])

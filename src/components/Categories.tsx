@@ -38,7 +38,6 @@ export function Categories() {
                     spacing='4'
                     padding={1}
                 >
-
                     <Tooltip label='Favoritos' hasArrow placement='right'>
                         <div>
                             <Link href={`/favorites`}>

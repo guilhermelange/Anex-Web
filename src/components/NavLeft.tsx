@@ -16,7 +16,7 @@ export function NavLeft() {
             align='center'
         >
             <Categories />
-            <Stack
+            {/* <Stack
                 borderRadius='full'
                 p='2'
                 spacing='3'
@@ -38,7 +38,7 @@ export function NavLeft() {
                     color={text}
                     aria-label="adventure"
                     icon={<MoonIcon />} />
-            </Stack>
+            </Stack> */}
         </Stack>
     )
 }

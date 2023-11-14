@@ -15,6 +15,7 @@ import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
 import Trending from "@/components/Trending";
 import MovieRow from "@/components/MovieRow";
 import { apiResources } from "@/services/api.contants";
+import CardRow from "@/components/CardRow";
 
 interface HomeProps {
   collections: CollectionDTO[];
@@ -22,7 +23,6 @@ interface HomeProps {
 }
 
 export default function Homepage({ collections, trendings }: HomeProps) {  
-  
   return (
     <>
       <SEO title="Início" />
@@ -35,9 +35,10 @@ export default function Homepage({ collections, trendings }: HomeProps) {
             <NavLeft />
             <Flex direction="column" maxW={'calc(100% - 68px)'} w={'full'}>
               <Trending trendings={trendings} />
-              <Stack mt={10} rowGap={8}>
+              <Stack mt={10} spacing={12}>
                 {collections.map((item) => {
-                  return <MovieRow key={item.id} items={item}></MovieRow>
+                  // return <MovieRow key={item.id} items={item}></MovieRow>
+                  return <CardRow key={item.id} items={item}></CardRow>
                 })}
               </Stack>
             </Flex>

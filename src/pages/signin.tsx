@@ -44,8 +44,8 @@ const SignIn: NextPage = () => {
             title: 'Aguarde...',
             description: 'Estamos conectando você à Nave Mãe',
             status: 'info',
-            duration: 5000,
-            isClosable: false
+            duration: 3000,
+            isClosable: true
         })
 
         try {
@@ -54,16 +54,16 @@ const SignIn: NextPage = () => {
                 title: 'Conectado',
                 description: 'Você está conectado. Aproveite!',
                 status: 'success',
-                duration: 5000,
-                isClosable: false
+                duration: 3000,
+                isClosable: true
             })
         } catch (error) {
             toast({
                 title: 'Oops...',
                 description: 'A Nave Mãe está fora de órbita! Não conseguimos conexão :(',
                 status: 'error',
-                duration: 5000,
-                isClosable: false
+                duration: 3000,
+                isClosable: true
             })
         }
     };
@@ -131,7 +131,7 @@ const SignIn: NextPage = () => {
                                         {errors.password && String(errors.password.message)}
                                     </FormErrorMessage>
                                 </FormControl>
-                                <Button colorScheme={primary} isLoading={isSubmitting} type='submit'>
+                                <Button color={'white'} colorScheme={primary} isLoading={isSubmitting} type='submit'>
                                     Login
                                 </Button>
                             </SimpleGrid>

@@ -52,7 +52,7 @@ export function NavTop({ inputSearch }: NavTopRequestDTO) {
                     <MotionIconButton bg={stackColor} isRound variant='ghost' size='lg' colorScheme='whiteAlpha' aria-label='logo' icon={<Logo w='30' />} whileHover={{ rotate: 45 }} />
                 </Link>
                 <InputGroup>
-                    <Input value={query} placeholder='O que você quer ver hoje?' size='md' width='96' onChange={(e) => (setQuery(e.target.value))}
+                    <Input borderRadius={'xl'} value={query} placeholder='O que você quer ver hoje?' size='md' width='96' onChange={(e) => (setQuery(e.target.value))}
                         _placeholder={{ color: textPlaceholder }}>
                     </Input>
                     <InputRightElement cursor={'pointer'} onClick={handleSearch}>

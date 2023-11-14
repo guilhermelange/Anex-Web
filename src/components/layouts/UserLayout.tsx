@@ -14,10 +14,12 @@ export default function UserLayout({ children, queryString }: UserLayoutDTO) {
             <Container 
                     flexGrow={1} 
                     maxW={"container.xl"} 
-                    height="100%" 
-                    mb={24}>
+                    // height="100%" 
+                    mb={24}
+                    >
                 <NavTop inputSearch={queryString} />
                 {children}
+                
             </Container>
             <Footer></Footer>
         </Flex>

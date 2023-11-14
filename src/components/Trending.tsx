@@ -103,7 +103,7 @@ export default function Trending({ trendings }: TrendingProps) {
         <>
             <Flex direction="row" height={'330px'} gap={4}>
                 <Box
-                    borderRadius="md"
+                    borderRadius="xl"
                     width="100%"
                     height="full"
                     bg={alpha}
@@ -149,7 +149,7 @@ export default function Trending({ trendings }: TrendingProps) {
                             w="100%"
                             h={"100%"}
                             background={"gray.700"}
-                            borderRightRadius="md"
+                            borderRightRadius="xl"
                         >
                             <MotionBox
                                 animate={{ opacity: [0, 1] }}
@@ -159,13 +159,13 @@ export default function Trending({ trendings }: TrendingProps) {
                                 backgroundImage={`url(/assets/${principal.cover_file})`}
                                 w={'full'}
                                 h={'full'}
-                                borderRightRadius="md">
+                                borderRightRadius="xl">
                             </MotionBox>
                         </GridItem>
                     </Grid>
                 </Box>
                 <Box
-                    borderRadius="md"
+                    borderRadius="xl"
                     width="35%"
                     height="full"
                     bg={alpha}
@@ -178,7 +178,7 @@ export default function Trending({ trendings }: TrendingProps) {
                             trending.map((item, currIndex) => (
                                 <>
                                     <GridItem
-                                        _last={{ borderBottomRadius: "md" }}
+                                        _last={{ borderBottomRadius: "xl" }}
                                         py={2}
                                         px={5}
                                         key={item.id}

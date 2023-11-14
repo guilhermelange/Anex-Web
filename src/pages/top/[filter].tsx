@@ -1,6 +1,6 @@
 import UserLayout from "@/components/layouts/UserLayout";
 import SEO from "@/components/SEO";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import FilterOptions from "@/enum/FilterOptions";
@@ -9,9 +9,11 @@ import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
 import CollectionDTO from "@/interfaces/CollectionDTO";
 import AnimeImage from "@/components/AnimeImage";
 import { apiResources } from "@/services/api.contants";
+import LoadingScreen from "@/components/loading";
 
 export default function Favorites() {
     const router = useRouter();
+    const [loading, setLoading] = useState(true);
     const [description, setDescription] = useState('');
     const [filteredAnimes, setFilteredAnimes] = useState([] as AnimeCollectionDTO[])
     let loadedData = false;
@@ -31,19 +33,19 @@ export default function Favorites() {
             }
         }
 
-        
+
         if (filterString) {
             if (!loadedData) {
                 loadedData = true;
                 sendRequestTop(filterString);
             }
-            
+
 
         }
     }, [router.query.filter])
 
     async function sendRequestTop(filter: string) {
-        let newFiltered : AnimeCollectionDTO[] = [];
+        let newFiltered: AnimeCollectionDTO[] = [];
         const response = await api.get(`${apiResources.COLLECTION}/${filter}`)
         const collections: CollectionDTO[] = response.data;
         if (collections) {
@@ -52,21 +54,23 @@ export default function Favorites() {
             }
         }
         setFilteredAnimes(newFiltered);
+        setLoading(false);
     }
 
     return (
         <>
             <SEO title="Favoritos" />
             <UserLayout>
+
                 <Flex direction="column" w={'full'} mt={5}>
                     <Heading mb={3} size={'md'}>{description}</Heading>
-                    <Flex display={'block'} gap={2} h={'full'}>
-                        {filteredAnimes && filteredAnimes.map((anime, index) => (
-                            <Box key={index} display={'inline-block'} px={1} py={4}>
+                    {loading && <LoadingScreen></LoadingScreen>}
+                    {!loading &&
+                        <SimpleGrid columns={{ base: 1, sm: 2, md: 4, lg: 6 }} spacing={6}>
+                            {filteredAnimes && filteredAnimes.map((anime, index) => (
                                 <AnimeImage key={anime.id} item={anime}></AnimeImage>
-                            </Box>
-                        ))}
-                    </Flex>
+                            ))}
+                        </SimpleGrid>}
                 </Flex>
             </UserLayout>
         </>
