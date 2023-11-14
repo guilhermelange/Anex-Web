@@ -17,6 +17,7 @@ interface AnimeContextType {
     collections: CollectionDTO[];
     trendings: AnimeCollectionDTO[];
     loadingAnime: boolean;
+    loadingAll: boolean;
 }
 
 export const AnimeContext = createContext({} as AnimeContextType)
@@ -26,9 +27,10 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
     const [trendings, setTrendings] = useState([]);
     const [anime, setAnime] = useState({} as AnimeDTO);
     const [loadingAnime, setLoadingAnime] = useState(false);
-    const [currentAnime, setCurrentAnime] = useState('');
+    const [loadingAll, setLoadingAll] = useState(false);
 
     async function loadAll() {
+        setLoadingAll(true);
         const responsedata = await api.get(apiResources.COLLECTION);
         const collections = responsedata.data;
         const trendingCollection = collections.shift()
@@ -37,6 +39,7 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
         trendings[0].progress = 1
         setCollections(collections);
         setTrendings(trendings);
+        setLoadingAll(false);
     }
 
     async function loadAnime(animeId: string) {
@@ -69,7 +72,7 @@ export function AnimeProvider({ children }: AnimeProviderProps) {
     }
 
     return (
-        <AnimeContext.Provider value={{ loadingAnime, loadAll, collections, trendings, loadAnime, anime, handleSetFavorite, handleEvaluation}}>
+        <AnimeContext.Provider value={{ loadingAll, loadingAnime, loadAll, collections, trendings, loadAnime, anime, handleSetFavorite, handleEvaluation}}>
             {children}
         </AnimeContext.Provider>
     )
