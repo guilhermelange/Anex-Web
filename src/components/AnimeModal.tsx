@@ -75,7 +75,7 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
             <LoadingScreen></LoadingScreen>
           </Flex>
         </>}
-        {!loadingAnime &&
+        {!loadingAnime && anime && anime?.id == animeId &&
           <Flex h={400} bg={'whiteAlpha.200'} w={'full'} alignItems={'center'}
             backgroundSize={'cover'}
             backgroundPosition={'center'}
