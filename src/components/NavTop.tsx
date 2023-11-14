@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Flex, IconButton, Input, Stack, Spacer, Avatar, Text, Icon, InputGroup, InputRightElement, Menu, MenuButton, MenuList, MenuItem, useColorModeValue, color } from "@chakra-ui/react";
+import { Flex, IconButton, Input, Stack, Spacer, Avatar, Text, Icon, InputGroup, InputRightElement, Menu, MenuButton, MenuList, MenuItem, useColorModeValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";

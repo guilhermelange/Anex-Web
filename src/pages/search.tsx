@@ -9,7 +9,7 @@ import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
 import UserLayout from "@/components/layouts/UserLayout";
 import AnimeImage from "@/components/AnimeImage";
 import { AnimeContext } from "@/context/AnimeContext";
-import LoadingScreen from "@/components/loading";
+import LoadingScreen from "@/components/Loading";
 
 export default function Search() {
     const [loading, setLoading] = useState(true);

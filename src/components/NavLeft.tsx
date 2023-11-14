@@ -1,6 +1,5 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useColorModeValue } from "@chakra-ui/react";
-import { IconButton, Stack, useColorMode } from "@chakra-ui/react";
+import { Stack, useColorMode } from "@chakra-ui/react";
 import { Categories } from "./Categories";
 
 export function NavLeft() {

@@ -1,6 +1,6 @@
 import UserLayout from "@/components/layouts/UserLayout";
 import SEO from "@/components/SEO";
-import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import FilterOptions from "@/enum/FilterOptions";
@@ -9,7 +9,7 @@ import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
 import CollectionDTO from "@/interfaces/CollectionDTO";
 import AnimeImage from "@/components/AnimeImage";
 import { apiResources } from "@/services/api.contants";
-import LoadingScreen from "@/components/loading";
+import LoadingScreen from "@/components/Loading";
 
 export default function Favorites() {
     const router = useRouter();

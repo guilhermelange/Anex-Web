@@ -13,7 +13,6 @@ import CollectionDTO from "@/interfaces/CollectionDTO";
 import { parseCookies } from "nookies";
 import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
 import Trending from "@/components/Trending";
-import MovieRow from "@/components/MovieRow";
 import { apiResources } from "@/services/api.contants";
 import CardRow from "@/components/CardRow";
 

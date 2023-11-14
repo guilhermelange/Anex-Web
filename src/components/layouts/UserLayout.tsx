@@ -1,5 +1,4 @@
 import { Container, Flex } from "@chakra-ui/react";
-import { useEffect } from "react";
 import Footer from "../Footer";
 import { NavTop } from "../NavTop";
 

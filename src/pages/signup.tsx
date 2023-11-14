@@ -22,7 +22,7 @@ import SignUpSection from '@/components/SignUpSection';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import Dialog, { DialogRequestDTO } from '@/components/Dialog';
+import Dialog from '@/components/Dialog';
 import { useColorModeValue } from '@chakra-ui/react';
 import { apiResources } from '@/services/api.contants';
 

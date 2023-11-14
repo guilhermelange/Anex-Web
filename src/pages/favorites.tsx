@@ -1,10 +1,10 @@
 import AnimeImage from "@/components/AnimeImage";
 import UserLayout from "@/components/layouts/UserLayout";
-import LoadingScreen from "@/components/loading";
+import LoadingScreen from "@/components/Loading";
 import SEO from "@/components/SEO";
 import { AnimeContext } from "@/context/AnimeContext";
 import { AnimeCollectionDTO } from "@/interfaces/AnimeDTO";
-import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
 
 export default function Favorites() {

@@ -1,7 +1,6 @@
 import { AnimeContext } from "@/context/AnimeContext";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { setCookie } from "nookies";
 import { useContext, useEffect, useState } from "react";
 import SeasonDTO from "@/interfaces/SeasonDTO";
 import EpisodeDTO from "@/interfaces/EpisodeDTO";

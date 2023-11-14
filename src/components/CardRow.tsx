@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import styles from '../styles/MovieRow.module.css'
+import React from 'react';
 import AnimeImage from './AnimeImage';
 import CollectionDTO from '@/interfaces/CollectionDTO';
-import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { useRef } from 'react';
-import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react';
+import { Box, SimpleGrid, Text } from '@chakra-ui/react';
 
 type CardRowProps = {
   items: CollectionDTO

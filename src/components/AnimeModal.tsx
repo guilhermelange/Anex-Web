@@ -30,7 +30,7 @@ import { BiLike, BiDislike } from 'react-icons/bi'
 import { MdOutlineBookmarkAdd, MdOutlineBookmarkAdded } from 'react-icons/md'
 import Link from "next/link";
 import { useColorModeValue } from "@chakra-ui/react";
-import LoadingScreen from "./loading";
+import LoadingScreen from "./Loading";
 
 interface AnimeModalProps {
   animeId: string;
