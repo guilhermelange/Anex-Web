@@ -43,6 +43,8 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
   const [selectedSeason, setSelectedSeason] = useState(0);
   const MotionIconButton = motion(IconButton);
   let animeAtualSelecionado = '';
+  const [like, setLike] = useState<boolean | null>(false);
+  const [favoriteItem, setFavoriteItem] = useState(false);
 
   const primary = useColorModeValue("purple", "orange")
   const alpha300 = useColorModeValue("whiteAlpha.300", "blackAlpha.300")
@@ -50,6 +52,8 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
 
   useEffect(() => {
     if (animeId && !animeAtualSelecionado) {
+      setLike(null);
+      setFavoriteItem(false);
       animeAtualSelecionado = animeId;
       loadAnime(animeId);
     }
@@ -61,7 +65,19 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
       if (currentSeason)
         setSelectedSeason(currentSeason.number)
     }
+    setLike(anime?.evaluation == undefined ? null : anime?.evaluation);
+    setFavoriteItem(!!anime?.favorite);
   }, [anime])
+
+  function handleClickEvaluation(evaluation: boolean) {
+    setLike(!!evaluation);
+    handleEvaluation(evaluation)
+  }
+
+  function handleClickFavorite() {
+    setFavoriteItem(!favoriteItem);
+    handleSetFavorite();
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'outside'} size={'4xl'}>
@@ -97,10 +113,10 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
                   {anime?.description}
                 </Text>
                 <Stack direction='row' spacing={6}>
-                  <MotionIconButton whileHover={{ scale: 1.05 }} transition={{ duration: 0.1 }} size='lg' borderRadius={'full'} icon={<BiLike />} onClick={() => { handleEvaluation(true) }} color={'white'} colorScheme={anime?.evaluation ? primary : 'gray'} />
-                  <MotionIconButton whileHover={{ scale: 1.05 }} transition={{ duration: 0.1 }} size='lg' borderRadius={'full'} icon={<BiDislike />} onClick={() => { handleEvaluation(false) }} color={'white'} colorScheme={anime?.evaluation == null || anime?.evaluation ? 'gray' : primary} />
-                  <Button size='lg' leftIcon={anime?.favorite ? <MdOutlineBookmarkAdded /> : <MdOutlineBookmarkAdd />} color={'white'} colorScheme={anime?.favorite ? primary : "gray"} variant='solid' onClick={() => { handleSetFavorite() }}>
-                    {anime?.favorite ? "Favoritado" : "Favoritar"}
+                  <MotionIconButton whileHover={{ scale: 1.05 }} transition={{ duration: 0.05 }} size='lg' borderRadius={'full'} icon={<BiLike />} onClick={() => { handleClickEvaluation(true) }} color={'white'} colorScheme={like ? primary : 'gray'} />
+                  <MotionIconButton whileHover={{ scale: 1.05 }} transition={{ duration: 0.05 }} size='lg' borderRadius={'full'} icon={<BiDislike />} onClick={() => { handleClickEvaluation(false) }} color={'white'} colorScheme={like || like == null ? 'gray' : primary} />
+                  <Button size='lg' leftIcon={favoriteItem ? <MdOutlineBookmarkAdded /> : <MdOutlineBookmarkAdd />} color={'white'} colorScheme={favoriteItem ? primary : "gray"} variant='solid' onClick={() => { handleClickFavorite() }}>
+                    {favoriteItem ? "Favoritado" : "Favoritar"}
                   </Button>
                 </Stack>
               </Stack>
