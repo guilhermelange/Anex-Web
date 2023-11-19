@@ -43,9 +43,9 @@ export default function Watch() {
                 <MdArrowBack fontSize='large' />
             </Box>
             <Flex  alignItems={'center'} justifyContent={'center'}>
-                <video style={{width: '100%', maxHeight: '100vh', height: '100vh'}} controls={true} autoPlay={true}>
+                {episode.link && <video style={{width: '100%', maxHeight: '100vh', height: '100vh'}} controls={true} autoPlay={true}>
                     <source src={episode.link} type="video/mp4"/>
-                </video>
+                </video>}
             </Flex>
         </>
     )
