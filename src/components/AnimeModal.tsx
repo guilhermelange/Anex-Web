@@ -79,6 +79,8 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
     handleSetFavorite();
   }
 
+  const compareNumbers = (a, b) => a.number - b.number;
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'outside'} size={'4xl'}>
       <ModalOverlay
@@ -143,7 +145,7 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
                         <option key={key} value={item.number}>{item.name}</option>
                       ))}
                     </Select>
-                    {anime?.season_count && anime.season?.find(item => item.number == selectedSeason)?.episode.map(item => (
+                    {anime?.season_count && anime.season?.find(item => item.number == selectedSeason)?.episode.sort(compareNumbers).map(item => (
                       <Box key={item.number} borderRadius={10} bg={alpha200} h={24} w={'full'} display='flex' alignItems={'center'} justifyContent='flex-start'
                         px={4}>
                         <Link href={`watch/${anime?.id}/${selectedSeason}/${item.number}`}>
