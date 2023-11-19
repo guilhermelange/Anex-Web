@@ -1,6 +1,8 @@
 import {
     Box,
     Flex,
+    SimpleGrid,
+    Text,
 } from "@chakra-ui/react";
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from "react";
@@ -53,16 +55,13 @@ export default function Search() {
                 {loadingAll && <LoadingScreen></LoadingScreen>}
                 {!loadingAll &&
                     <Flex direction="column" w={'full'} mt={5}>
-                        {(filteredAnime) && <h6>{
-                            filteredAnime.length > 0 ? 'Resultados obtidos' : 'Nenhum resultado obtido'
-                        } para "<strong>{query}"</strong> </h6>}
-                        <Flex display={'block'} gap={2} h={'full'}>
+                        {(filteredAnime) && <Text mb={2}>{filteredAnime.length > 0 ? 'Resultados obtidos' : 'Nenhum resultado obtido'} para <Text display={'inline'} fontWeight={'black'}>{query}</Text></Text>}
+                        {filteredAnime &&
+                        <SimpleGrid columns={{ base: 1, sm: 2, md: 4, lg: 6 }} spacing={6}>
                             {filteredAnime && filteredAnime.map((anime, index) => (
-                                <Box key={index} display={'inline-block'} px={1} py={4}>
-                                    <AnimeImage key={anime.id} item={anime}></AnimeImage>
-                                </Box>
+                                <AnimeImage key={anime.id} item={anime}></AnimeImage>
                             ))}
-                        </Flex>
+                        </SimpleGrid>}
                     </Flex>}
             </UserLayout>
         </>
