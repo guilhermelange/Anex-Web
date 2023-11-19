@@ -79,7 +79,7 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
     handleSetFavorite();
   }
 
-  const compareNumbers = (a, b) => a.number - b.number;
+  const compareNumbers = (a: any, b: any) => a.number - b.number;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} scrollBehavior={'outside'} size={'4xl'}>
