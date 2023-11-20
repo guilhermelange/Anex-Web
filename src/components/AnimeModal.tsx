@@ -89,7 +89,7 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
       />
       <ModalContent>
         {loadingAnime && <>
-          <Flex h={400} bg={'whiteAlpha.200'} w={'full'} alignItems={'center'}>
+          <Flex h={400} bg={'whiteAlpha.200'} w={'full'} alignItems={'center'} borderTopRadius={4}>
             <LoadingScreen></LoadingScreen>
           </Flex>
         </>}
@@ -163,7 +163,7 @@ export default function AnimeModal({ animeId, isOpen, onClose }: AnimeModalProps
                 </TabPanel>
                 <TabPanel>
                   {anime?.playlist_link && <div>
-                    <iframe src={anime?.playlist_link} width="100%" height="380" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    <iframe src={anime?.playlist_link} width="100%" height="500" frameBorder="0" style={{borderRadius: "14px"}} allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                   </div>}
                 </TabPanel>
               </TabPanels>

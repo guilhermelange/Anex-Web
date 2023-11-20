@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Flex, IconButton, Input, Stack, Spacer, Avatar, Text, Icon, InputGroup, InputRightElement, Menu, MenuButton, MenuList, MenuItem, useColorModeValue } from "@chakra-ui/react";
+import { Flex, IconButton, Input, Stack, Spacer, Avatar, Text, Icon, InputGroup, InputRightElement, Menu, MenuButton, MenuList, MenuItem, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
@@ -20,10 +20,14 @@ export function NavTop({ inputSearch }: NavTopRequestDTO) {
     const stackColor = useColorModeValue("blackAlpha.100", "whiteAlpha.100")
     const textPlaceholder = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
     const [userName, setUserName] = useState('');
+    const { colorMode, toggleColorMode } = useColorMode();
 
     useEffect(() => {
         const { 'nextauth.name': cookieName } = parseCookies(undefined);
         setUserName(cookieName);
+        if (colorMode != 'dark') {
+            toggleColorMode();
+        }
     }, [])
 
     useEffect(() => {

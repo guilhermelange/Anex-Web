@@ -11,6 +11,7 @@ import {
     InputGroup,
     InputRightElement,
     SimpleGrid,
+    useColorMode,
     useColorModeValue,
     useToast,
     VStack,
@@ -18,7 +19,7 @@ import {
 import type { NextPage } from "next";
 import SignUpSection from '@/components/SignUpSection';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { AuthContext } from '@/context/AuthContext';
 import { DefaultLogo } from '@/components/icons/DefaultLogo';
@@ -37,6 +38,13 @@ const SignIn: NextPage = () => {
     const primary = useColorModeValue("purple", "orange")
     const text = useColorModeValue("black", "white")
     const textPlaceholder = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
+    const { colorMode, toggleColorMode } = useColorMode();
+
+    useEffect(()=> {
+        if (colorMode != 'dark') {
+            toggleColorMode();
+        }
+    }, [])
 
     const onSubmit = async (data: any) => {
         const { email, password } = data;

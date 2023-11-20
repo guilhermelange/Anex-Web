@@ -12,6 +12,7 @@ import {
     InputRightElement,
     SimpleGrid,
     Text,
+    useColorMode,
     useDisclosure,
     useToast,
     VStack,
@@ -20,7 +21,7 @@ import type { NextPage } from "next";
 import { api } from '@/services/api';
 import SignUpSection from '@/components/SignUpSection';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Dialog from '@/components/Dialog';
 import { useColorModeValue } from '@chakra-ui/react';
@@ -34,6 +35,14 @@ const SignUp: NextPage = () => {
     const primary = useColorModeValue("purple", "orange")
     const text = useColorModeValue("black", "white")
     const textPlaceholder = useColorModeValue("blackAlpha.400", "whiteAlpha.400")
+
+    const { colorMode, toggleColorMode } = useColorMode();
+
+    useEffect(()=> {
+        if (colorMode != 'dark') {
+            toggleColorMode();
+        }
+    }, [])
 
     const {
         handleSubmit,
