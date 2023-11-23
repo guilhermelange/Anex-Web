@@ -81,7 +81,7 @@ const SignUp: NextPage = () => {
                     >
                         <SignUpSection
                             buttonText='Login'
-                            commentText={['Se mantenha conectado', 'Logue com sua conta pessoal']}
+                            commentText={['Mantenha-se conectado', 'Logue com sua conta pessoal']}
                             headingText={['Bem vindo de volta', '!']}
                             onClick={() => { router.push('signin') }} />
                         <VStack w={'full'}
